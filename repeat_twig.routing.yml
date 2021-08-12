@@ -1,0 +1,8 @@
+#this is for show examples of use
+aoc_quiz.certificate:
+  path: '/repeat-twig/examples'
+  defaults:
+    _controller: '\Drupal\repeat_twig\Controller\RepeatTwigController::examples'
+    _title: 'Repeat Twig Examples'
+  requirements:
+    _access: 'TRUE' #so everyone can access this page

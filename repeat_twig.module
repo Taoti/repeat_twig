@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Twig Tweak test module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function repeat_twig_theme() {
+  return [
+    'repeat_twig_examples' => [
+      'variables' => [
+        'node' => NULL,
+        'node_content' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for twig-tweak-test template.
+ */
+function template_preprocess_repeat_twig_examples(&$vars) {
+  if ($node = \Drupal::entityTypeManager()->getStorage('node')->load(1)) {
+    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+    $node_elements = $view_builder->view($node, 'full');
+    $node_elements['#cache']['max-age'] = 0;
+    \Drupal::service('renderer')->render($node_elements);
+
+    $node_vars = [
+      'elements' => $node_elements,
+      'node' => $node,
+      'view_mode' => 'full',
+    ];
+
+    if (isset($node_elements['#theme'])) {
+      template_preprocess_node($node_vars);
+
+      $vars['node'] = $node;
+      $vars['node_content'] = $node_vars['content'];
+    }
+  }
+}

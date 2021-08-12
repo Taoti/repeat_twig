@@ -1,0 +1,78 @@
+<div>
+  <h1>Twig Repeat Examples</h1> 
+
+  <div style="border-bottom: solid 3px #D1D1D1; padding-bottom: 40px; margin-bottom: 40px;">
+    <h2>Filters</h2>
+
+    {# ******* Date Range Format - Filter ******* #}
+    <h3 style="margin-bottom:10px;">Date Range Format</h3>
+    <h4 style="margin-bottom:5px;">Basic Usage</h4>
+    {% set start_date = '2020-07-08T16:52:43' %}
+    {% set end_date = '2020-07-09T18:00:00' %}
+    <code>
+      {{ "{{ start_date|date_range_format(end_date, month_format, day_format) }}" }}<br>
+      {{ "{{ '2020-07-08T16:52:43'|date_range_format('2020-07-09T18:00:00') }}" }}<br>
+      {{ "{{ '2020-07-08T16:52:43'|date_range_format('2020-07-09T18:00:00', 'M', 'jS') }}" }}<br>
+    </code>
+    <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
+    <div>{{ start_date|date_range_format(end_date) }}</div>
+    <div>{{ start_date|date_range_format(end_date, 'M', 'jS') }}</div>
+    {# ******* End ******* #}
+
+    {# ******* Truncate Safe - Filter ******* #}
+    <h3 style="margin-bottom:10px; margin-top:40px;">Truncate Safe</h3>
+    <h4 style="margin-bottom:5px;">Basic Usage</h4>
+    <code>
+      {{ "{{ string|truncate_safe(max_length, word_safe, add_ellipsis, min_word_safe_length) }}" }}<br>
+      {{ "{{ content.field_summary|render|truncate_safe(10) }}" }}<br>
+    </code>
+    <h4 style="margin-bottom:5px; margin-top:15px;">Original</h4>
+    <div>Lorem ipsum Lorem ipsum dolor sit amet, consectetur</div>  
+    <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
+    <div>{{ 'Lorem ipsum Lorem ipsum dolor sit amet, consectetur'|truncate_safe(10) }}</div>  
+    {# ******* End ******* #}  
+
+    {# ******* Media Image Style - Filter ******* #}
+    <h3 style="margin-bottom:10px; margin-top:40px;">Media Image Style</h3>
+    <div><p>This example require media field named "field media" in node 1</p></div>
+    <h4 style="margin-bottom:5px;">Basic Usage</h4>
+    <code>
+      {{ "{{ content.field_media|media_image_style(image_style_name, key) }}" }}<br>
+      {{ "{{ content.field_media|media_image_style('thumbnail') }}" }}<br>
+      {{ "{{ content.field_media|media_image_style('thumbnail', 1) }}" }}
+    </code>
+    <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
+    <div>{{ node_content.field_media|media_image_style('thumbnail') }}</div>  
+    {# ******* End ******* #}  
+
+    {# ******* Media Image Url - Filter ******* #}
+    <h3 style="margin-bottom:10px; margin-top:40px;">Media Image Url</h3>
+    <div><p>This example require media field named "field media" in node 1</p></div>
+    <h4 style="margin-bottom:5px;">Basic Usage</h4>
+    <code>
+      {{ "{{ content.field_media|media_image_url(key) }}" }}<br>
+      {{ "{{ content.field_media|media_image_url }}" }}<br>
+      {{ "{{ content.field_media|media_image_url(1) }}" }}
+    </code>
+    <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
+    <div>{{ node_content.field_media|media_image_url }}</div>  
+    {# ******* End ******* #}    
+  </div>
+
+  <div>
+    <h2>Functions</h2>
+
+    {# ******* Get Query Parameter - Function ******* #}
+    <h3 style="margin-bottom:10px;">Get Query Parameter</h3>
+    <div>
+      <p>It allow get a variable from url: /repeat-twig/examples?keyword=This is a test</p>
+    </div>
+    <h4 style="margin-bottom:5px;">Basic Usage</h4>
+    <code>
+      {{ "{{ get_query_parameter('keyword', 'Default Value') }}" }}<br>
+    </code>
+    <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
+    <div>{{ get_query_parameter('keyword', 'Default Value') }}</div>
+    {# ******* End ******* #}    
+  </div>  
+</div>    

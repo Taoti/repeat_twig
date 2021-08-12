@@ -1,0 +1,5 @@
+services:
+  repeat_twig.twig_extension:
+    class: Drupal\repeat_twig\TwigExtension\TwigExtension
+    tags:
+      - { name: twig.extension }
