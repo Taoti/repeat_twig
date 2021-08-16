@@ -25,13 +25,13 @@ class TwigExtension extends AbstractExtension {
    */
   public function getFunctions() {
     return [
-      // - Get Query Parameter -
+      // - Query Parameter -
       //
       // @code
       //   {# Basic usage. #}
-      //   {{ get_query_parameter('keyword', 'Default Value') }}
+      //   {{ query_parameter('keyword', 'Default Value') }}
       //
-      new TwigFunction('get_query_parameter', [$this, 'getQueryParameter']),
+      new TwigFunction('query_parameter', [$this, 'getQueryParameter']),
     ];
   }
 
