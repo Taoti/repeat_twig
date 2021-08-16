@@ -62,12 +62,12 @@ This example require media field named "field media" in node 1
 ```
 
 ## Functions
-### Get Query Parameter
+### Query Parameter
 It allow get a variable from url: /repeat-twig/examples?keyword=This is a test
 
 Basic Usage
 ```
-{{ get_query_parameter('keyword', 'Default Value') }}
+{{ query_parameter('keyword', 'Default Value') }}
 ```
 Output
 ```
