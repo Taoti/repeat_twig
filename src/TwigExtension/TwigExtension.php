@@ -76,6 +76,15 @@ class TwigExtension extends AbstractExtension {
       //
       // @endcode
       new TwigFilter('media_image_url', [$this, 'getMediaImageUrl']),
+
+      // - Media Image Attr -
+      //
+      // @code
+      //   {# Basic usage. #}
+      //   {{ content.field_media|media_image_attr }}
+      //
+      // @endcode
+      new TwigFilter('media_image_attr', [$this, 'getMediaImageAttr']),      
     ];
 
     return $filters;
@@ -198,7 +207,7 @@ class TwigExtension extends AbstractExtension {
   /**
    * It generate url with the media and image style given.
    *
-   * @param array $element
+   * @param array|null $element
    *   The element from view mode.
    *
    * @param string $image_style
@@ -210,7 +219,7 @@ class TwigExtension extends AbstractExtension {
    * @return string
    *   The url of the image with the image style given.
    */
-  public function mediaImageStyle(array $element, string $image_style = '', int $key = 0) {
+  public function mediaImageStyle($element, string $image_style = '', int $key = 0) {
     $url = '';
     if ($uri = $this->getMediaImageUri($element, $key)) {
       if ($image_style_entity = ImageStyle::load($image_style)) {
@@ -226,7 +235,7 @@ class TwigExtension extends AbstractExtension {
   /**
    * It generate url with the media and image style given.
    *
-   * @param array $element
+   * @param array|null $element
    *   The element from view mode.
    *
    * @param int $key
@@ -235,7 +244,7 @@ class TwigExtension extends AbstractExtension {
    * @return string
    *   The url of the image in media entity with the configuration from view mode.
    */
-  public function getMediaImageUrl(array $element, int $key = 0) {
+  public function getMediaImageUrl($element, int $key = 0) {
     $url = '';
     if (isset($element[$key])) {
       $markup = \Drupal::service('renderer')->render($element[$key]);
@@ -250,11 +259,39 @@ class TwigExtension extends AbstractExtension {
 
     return $url;
   }
+  
+  /**
+   * It get the Alt text from media entity.
+   *
+   * @param array|null $element
+   *   The element from view mode.
+   *
+   * @param int $key
+   *   The index of the element in the array given.
+   *
+   * @return string|array
+   *   The alt of the image in image of the media entity.
+   */
+  public function getMediaImageAttr($element, $attr= '', $key = 0) {
+    $image_attr = '';
+    if ($media = $this->getMediaEntity($element, $key)) {
+      if ($media->hasField('field_media_image')) {
+        \Drupal::logger('test')->notice('<pre>' . print_r(($media->field_media_image->getValue()), true) .'</pre>');
+        if (empty($attr)) {
+          $image_attr = $media->field_media_image->getValue();  
+        }
+        else {
+          $image_attr = $media->field_media_image->{$attr};
+        }        
+      }
+    }
+    return $image_attr;
+  }
 
   /**
    * It get uri from media entity.
    *
-   * @param array $element
+   * @param array|null $element
    *   The element from view mode.
    *
    * @param int $key
@@ -276,7 +313,7 @@ class TwigExtension extends AbstractExtension {
   /**
    * It get the media entity from element given.
    *
-   * @param array $element
+   * @param array|null $element
    *   The element from view mode.
    *
    * @param int $key
@@ -287,7 +324,6 @@ class TwigExtension extends AbstractExtension {
    */
   public function getMediaEntity($element, $key = 0) {
     $entity = FALSE;
-
     if (gettype($element) == 'array') {
       if (isset($element[$key]) && isset($element[$key]['#media'])) {
         $entity = $element[$key]['#media'];

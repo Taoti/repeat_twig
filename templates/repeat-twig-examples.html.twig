@@ -57,6 +57,21 @@
     <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
     <div>{{ node_content.field_media|media_image_url }}</div>  
     {# ******* End ******* #}    
+
+    {# ******* Media Image Attr - Filter ******* #}
+    <h3 style="margin-bottom:10px; margin-top:40px;">Media Image Attr</h3>
+    <div><p>This example require media field named "field media" in node 1</p></div>
+    <h4 style="margin-bottom:5px;">Basic Usage</h4>
+    <code>
+      {{ "{{ content.field_media|media_image_attr(attr, key) }}" }}
+      {{ "{{ content.field_media|media_image_attr }}" }}<br>
+      {{ "{{ content.field_media|media_image_attr('alt') }}" }}<br>
+      {{ "{{ content.field_media|media_image_attr('alt', 1) }}" }}<br>
+      {{ "{{ content.field_media|media_image_attr('', 1) }}" }}<br>
+    </code>
+    <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
+    <div>{{ node_content.field_media|media_image_attr('alt') }}</div>  
+    {# ******* End ******* #}            
   </div>
 
   <div>
