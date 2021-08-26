@@ -60,7 +60,10 @@
 
     {# ******* Media Image Attr - Filter ******* #}
     <h3 style="margin-bottom:10px; margin-top:40px;">Media Image Attr</h3>
-    <div><p>This example require media field named "field media" in node 1</p></div>
+    <div>
+      <p>This example require media field named "field media" in node 1</p>
+      <p>The available attributes are alt, target_id, title, width, and height</p>
+    </div>
     <h4 style="margin-bottom:5px;">Basic Usage</h4>
     <code>
       {{ "{{ content.field_media|media_image_attr(attr, key) }}" }}

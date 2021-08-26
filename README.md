@@ -174,7 +174,8 @@ This example require media field named "field media" in node 1
 ```
 
 ### Media Image Attr
-This example require media field named "field media" in node 1
+This example require media field named "field media" in node 1,
+the available attributes are alt, target_id, title, width, and height
 ####  Basic Usage
 ```
 {{ content.field_media|media_image_attr(attr, key) }}
