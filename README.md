@@ -9,7 +9,7 @@ See the page with examples of the filters, functions, and custom validations  av
 - https://www.drupal.org/docs/theming-drupal/twig-in-drupal/filters-modifying-variables-in-twig-templates
 - https://www.drupal.org/docs/theming-drupal/twig-in-drupal/functions-in-twig-templates
 - https://www.hashbangcode.com/article/drupal-9-creating-custom-twig-functions-and-filters
-- Custom validations: https://php.budgegeria.de/gjvtgrfg
+- https://php.budgegeria.de/gjvtgrfg
 
 ## How add a new filter?
 1. Go src/TwigExtension/TwigExtension.php
