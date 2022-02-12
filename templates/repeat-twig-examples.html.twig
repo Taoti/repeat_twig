@@ -77,7 +77,7 @@
     {# ******* End ******* #}            
   </div>
 
-  <div>
+  <div style="border-bottom: solid 3px #D1D1D1; padding-bottom: 40px; margin-bottom: 40px;">
     <h2>Functions</h2>
 
     {# ******* Query Parameter - Function ******* #}
@@ -93,4 +93,21 @@
     <div>{{ query_parameter('keyword', 'Default Value') }}</div>
     {# ******* End ******* #}    
   </div>  
+
+  <div style="margin-bottom: 40px;">
+    <h2>Custom Validations</h2>
+
+    {# ******* numeric - Custom Validation ******* #}
+    <h3 style="margin-bottom:10px;">Numeric</h3>
+    <div>
+      <p>It allows check if the value given is a number</p>
+    </div>
+    <h4 style="margin-bottom:5px;">Basic Usage</h4>
+    <code>
+      {{ "{% if 3 is numeric %} It's a number {% endif %}" }}<br>
+    </code>
+    <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
+    <div>{% if 3 is numeric %} It's a number {% endif %}</div>
+    {# ******* End ******* #}    
+  </div>    
 </div>    

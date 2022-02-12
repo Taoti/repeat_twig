@@ -5,6 +5,7 @@ namespace Drupal\repeat_twig\TwigExtension;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
+use Twig\TwigTest;
 use Drupal\Component\Utility\Unicode;
 use Drupal\image\Entity\ImageStyle;
 
@@ -32,6 +33,29 @@ class TwigExtension extends AbstractExtension {
       //   {{ query_parameter('keyword', 'Default Value') }}
       //
       new TwigFunction('query_parameter', [$this, 'getQueryParameter']),
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTests() {
+    return [
+      // - Numeric -
+      //
+      // @code
+      //   {# Basic usage. #}
+      //   {% if value is numeric %} do something {% endif %}
+      //      
+      new TwigTest('numeric', [$this, 'isNumeric']),
+
+      // - Float -
+      //
+      // @code
+      //   {# Basic usage. #}
+      //   {% if value is float %} do something {% endif %}
+      //      
+      new TwigTest('float', [$this, 'isFloat']),      
     ];
   }
 
@@ -335,4 +359,29 @@ class TwigExtension extends AbstractExtension {
     return $entity;
   }
 
+  /**
+   * It allows check if the value given is a number.
+   *
+   * @param mixed $value
+   *   The value to check.
+   *
+   * @return bool
+   *   The result of the validation.
+   */
+  public function isNumeric($value) {
+    return is_numeric($value);
+  }
+
+  /**
+   * It allows check if the value given is a number.
+   *
+   * @param mixed $value
+   *   The value to check.
+   *
+   * @return bool
+   *   The result of the validation.
+   */
+  public function isFloat($value) {
+    return is_float($value);
+  }    
 }

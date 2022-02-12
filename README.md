@@ -2,13 +2,14 @@
 
 # Twig Repeat Examples
 
-See the page with examples of the filters and functions available after of the install the module: 
+See the page with examples of the filters, functions, and custom validations  available after of the install the module: 
 * __/repeat-twig/examples?keyword=this is a test__
 
 ## Help Links
 - https://www.drupal.org/docs/theming-drupal/twig-in-drupal/filters-modifying-variables-in-twig-templates
 - https://www.drupal.org/docs/theming-drupal/twig-in-drupal/functions-in-twig-templates
 - https://www.hashbangcode.com/article/drupal-9-creating-custom-twig-functions-and-filters
+- Custom validations: https://php.budgegeria.de/gjvtgrfg
 
 ## How add a new filter?
 1. Go src/TwigExtension/TwigExtension.php
@@ -81,7 +82,7 @@ See the page with examples of the filters and functions available after of the i
       //
       new TwigFunction('query_parameter', [$this, 'getQueryParameter']),
 
-      // - *** My New Filter *** -
+      // - *** My New Function *** -
       //
       // @code
       //   {# Basic usage. #}
@@ -115,6 +116,42 @@ See the page with examples of the filters and functions available after of the i
 4. That's all, the new function could be used from any twig template 
 ```
 {{ my_new_function_name('string') }}
+```
+
+## How add a new custom validation?
+1. Go src/TwigExtension/TwigExtension.php
+2. Add a new function instance inside getTests() function, in this sample, we call it ***my_new_test_name***, the instance receives two parameters, the name of the function and a array with the callable function.
+```
+  public function getTests() {
+    return [
+      // - *** My New Custom Validaiton *** -
+      //
+      // @code
+      //   {# Basic usage. #}
+      //   {% value is my_new_test_name %}
+      //
+      // @endcode
+      new TwigFunction('my_new_test_name', [$this, 'myNewTestName']),
+    ];    
+```
+3. Add function with the logic to make
+```
+  /**
+   * It is a example for add a custom validation on twig.
+   *
+   * @param mixed $value
+   *   The value given, it could be any variable type, 
+   *
+   * @return boolean
+   *   The result of the validation, true or false.
+   */
+  public function myNewTestName($value) {
+    return is_bool($value);
+  }
+```
+4. That's all, the new custom validation could be used from any twig template 
+```
+{% value is my_new_test_name %} do something {% endif %}
 ```
 
 ## Filters
@@ -200,4 +237,29 @@ Basic Usage
 Output
 ```
 this is a test
+```
+
+## Custom Validations
+### Numeric
+It allows check if the value given is a number
+
+Basic Usage
+```
+{% value is numeric %} do something {% endif %}
+```
+Output
+```
+do something
+```
+
+### Float
+It allows check if the value given is a float
+
+Basic Usage
+```
+{% value is float %} do something {% endif %}
+```
+Output
+```
+do something
 ```
