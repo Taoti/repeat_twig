@@ -243,13 +243,31 @@ this is a test
 ### Numeric
 It allows check if the value given is a number
 
-Basic Usage
+#### Basic Usage
 ```
-{% value is numeric %} do something {% endif %}
+{% if value is numeric %} do something {% endif %}
 ```
 Output
 ```
 do something
+```
+
+#### Case of use
+On this example, it detect the index numeric in array of the drupal field to get information from entities referenced
+```
+{% for key, reference in content.field_references %}
+  {% if key is numeric %}
+    <div class="reference--{{ key }} {{ key == 0 ? 'active'}}">
+      {{ 
+        drupal_field(
+          'field_image', 
+          'paragraph', 
+          reference['#paragraph'].id()
+        ) 
+      }}   
+    </div>             
+  {% endif %}
+{% endfor %}
 ```
 
 ### Float
@@ -257,7 +275,7 @@ It allows check if the value given is a float
 
 Basic Usage
 ```
-{% value is float %} do something {% endif %}
+{% if value is float %} do something {% endif %}
 ```
 Output
 ```
