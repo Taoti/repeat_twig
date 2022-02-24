@@ -42,7 +42,9 @@
       {{ "{{ content.field_media|media_image_style('thumbnail', 1) }}" }}
     </code>
     <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
-    <div>{{ node_content.field_media|media_image_style('thumbnail') }}</div>  
+    {% set src = node_content.field_media|media_image_style('thumbnail') %}
+    <div>{{ node_content.field_media|media_image_style('thumbnail') }}</div> 
+    <div><img src="{{ src }}" alt="Image Test"/></div> 
     {# ******* End ******* #}  
 
     {# ******* Media Image Url - Filter ******* #}
@@ -55,7 +57,11 @@
       {{ "{{ content.field_media|media_image_url(1) }}" }}
     </code>
     <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
+    {% set image_url = node_content.field_media|media_image_url %}
     <div>{{ node_content.field_media|media_image_url }}</div>  
+    <div style="background:url({{image_url}}) no-repeat; background-size: cover; width: 100%; height: 400px; display:flex; align-items:center;justify-content:center; color: red;font-weight: bold;">
+      <h2>This is a test</h2>
+    </div>
     {# ******* End ******* #}    
 
     {# ******* Media Image Attr - Filter ******* #}
@@ -71,9 +77,13 @@
       {{ "{{ content.field_media|media_image_attr('alt') }}" }}<br>
       {{ "{{ content.field_media|media_image_attr('alt', 1) }}" }}<br>
       {{ "{{ content.field_media|media_image_attr('', 1) }}" }}<br>
+
+      <img src="my_image" alt="{{ content.field_media|media_image_attr('alt') }}" />
     </code>
     <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
-    <div>{{ node_content.field_media|media_image_attr('alt') }}</div>  
+    <div><b>Alternative text:</b> {{ node_content.field_media|media_image_attr('alt') }}</div> 
+    {% set alt = node_content.field_media|media_image_attr('alt') %}
+    <div><img src="{{ src }}" alt="{{ alt }}"/></div>
     {# ******* End ******* #}            
   </div>
 
