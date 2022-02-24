@@ -35,11 +35,18 @@
     {# ******* Media Image Style - Filter ******* #}
     <h3 style="margin-bottom:10px; margin-top:40px;">Media Image Style</h3>
     <div><p>This example require media field named "field media" in node 1</p></div>
+    <h4 style="margin-bottom:5px;">Case of use</h4>
+    <div>
+      <p>
+        It could be useful in scenarios where it is necessary to use different image styles of the same field in the same display. (masonry grid)
+      </p>
+    </div>
     <h4 style="margin-bottom:5px;">Basic Usage</h4>
     <code>
       {{ "{{ content.field_media|media_image_style(image_style_name, key) }}" }}<br>
       {{ "{{ content.field_media|media_image_style('thumbnail') }}" }}<br>
       {{ "{{ content.field_media|media_image_style('thumbnail', 1) }}" }}
+      &lt;img src="{{ "{{ content.field_media|media_image_style('thumbnail') }}" }} /&gt;
     </code>
     <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
     {% set src = node_content.field_media|media_image_style('thumbnail') %}
@@ -54,7 +61,10 @@
     <code>
       {{ "{{ content.field_media|media_image_url(key) }}" }}<br>
       {{ "{{ content.field_media|media_image_url }}" }}<br>
-      {{ "{{ content.field_media|media_image_url(1) }}" }}
+      {{ "{{ content.field_media|media_image_url(1) }}" }}<br>
+      &lt;div style="background:url({{ "{{ content.field_media|media_image_url }}" }})"&gt; 
+        This is a test 
+      &lt;/div&gt;
     </code>
     <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
     {% set image_url = node_content.field_media|media_image_url %}
@@ -78,7 +88,7 @@
       {{ "{{ content.field_media|media_image_attr('alt', 1) }}" }}<br>
       {{ "{{ content.field_media|media_image_attr('', 1) }}" }}<br>
 
-      <img src="my_image" alt="{{ content.field_media|media_image_attr('alt') }}" />
+      &lt;img src="my_image" alt="{{ "{{ content.field_media|media_image_attr('alt') }}" }}" /&gt;
     </code>
     <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
     <div><b>Alternative text:</b> {{ node_content.field_media|media_image_attr('alt') }}</div> 
@@ -100,7 +110,7 @@
       {{ "{{ query_parameter('keyword', 'Default Value') }}" }}<br>
     </code>
     <h4 style="margin-bottom:5px; margin-top:15px;">Output</h4>
-    <div>{{ query_parameter('keyword', 'Default Value') }}</div>
+    <div><b>Kewyword Parameter: </b>{{ query_parameter('keyword', 'Default Value') }}</div>
     {# ******* End ******* #}    
   </div>  
 

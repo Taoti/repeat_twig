@@ -186,11 +186,14 @@ Lorem…
 
 ### Media Image Style
 This example require media field named "field media" in node 1
+#### Case of use
+It could be useful in scenarios where it is necessary to use different image styles of the same field in the same display. (masonry grid)
 #### Basic Usage
 ```
 {{ content.field_media|media_image_style(image_style_name, key) }}
 {{ content.field_media|media_image_style('thumbnail') }}
 {{ content.field_media|media_image_style('thumbnail', 1) }}
+<img src="{{ content.field_media|media_image_style('thumbnail') }} />
 ```
 #### Output
 ```
@@ -204,6 +207,9 @@ This example require media field named "field media" in node 1
 {{ content.field_media|media_image_url(key) }}
 {{ content.field_media|media_image_url }}
 {{ content.field_media|media_image_url(1) }}
+<div style="background:url({{ content.field_media|media_image_url }})> 
+  This is a test 
+</div>
 ```
 ####  Output
 ```
@@ -220,6 +226,7 @@ the available attributes are alt, target_id, title, width, and height
 {{ content.field_media|media_image_attr('', 1) }}
 {{ content.field_media|media_image_attr('alt') }}
 {{ content.field_media|media_image_attr('alt', 1) }}
+<img src="my_image" alt="{{ content.field_media|media_image_attr('alt') }}" />
 ```
 ####  Output
 ```
