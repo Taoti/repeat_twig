@@ -1,8 +1,6 @@
+# Twig REPEAT Examples
 
-
-# Twig Repeat Examples
-
-See the page with examples of the filters, functions, and custom validations  available after of the install the module: 
+See the following page for examples of filters, functions, and custom validations available after installing this module: 
 * __/repeat-twig/examples?keyword=this is a test__
 
 ## Help Links

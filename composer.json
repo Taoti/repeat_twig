@@ -1,0 +1,13 @@
+{
+    "name": "taoti/repeat_twig",
+    "description": "Taoti twig filters, functions, and custom validations",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Carlos Diaz",
+            "email": "cdiaz@taoti.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "license": "MIT"
+}
