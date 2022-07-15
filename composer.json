@@ -1,7 +1,7 @@
 {
     "name": "taoti/repeat_twig",
     "description": "Taoti twig filters, functions, and custom validations",
-    "type": "project",
+    "type": "drupal-module",
     "authors": [
         {
             "name": "Carlos Diaz",
