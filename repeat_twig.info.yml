@@ -1,5 +1,5 @@
 name: Repeat Twig
-description: This module contains custom filters and functions to twig.
-core_version_requirement: '^8.8 || ^9'
+description: This module contains custom filters and functions for Twig.
+core_version_requirement: ^9 || ^10
 package: 'Repeat'
 type: module
