@@ -300,7 +300,6 @@ class TwigExtension extends AbstractExtension {
     $image_attr = '';
     if ($media = $this->getMediaEntity($element, $key)) {
       if ($media->hasField('field_media_image')) {
-        \Drupal::logger('test')->notice('<pre>' . print_r(($media->field_media_image->getValue()), true) .'</pre>');
         if (empty($attr)) {
           $image_attr = $media->field_media_image->getValue();  
         }
