@@ -250,7 +250,9 @@ class TwigExtension extends AbstractExtension {
         $path = $image_style_entity->buildUrl($uri);
       }
 
-      $url = \Drupal::service('stream_wrapper_manager')->getViaUri($path)->getExternalUrl();
+      if ($uri = \Drupal::service('stream_wrapper_manager')->getViaUri($path)) {
+        $url = $uri->getExternalUrl();
+      }
     }
 
     return $url;
